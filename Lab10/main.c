@@ -3,8 +3,8 @@
 //
 //
 // This program functions as a multi-function flashlight
-//  -on the first button push the two “main” LEDs turn on yellow
-//  -on the second button push the single “side” LED  turns on red
+//  -on the first button push the two ï¿½mainï¿½ LEDs turn on yellow
+//  -on the second button push the single ï¿½sideï¿½ LED  turns on red
 //  -on the third button push all the LEDs turn on green
 //  -on the fourth button push all the LEDs flash green
 //  -on the fifth button push all the LEDs turn off
@@ -26,8 +26,8 @@ void main()
     PM5CTL0 &= ~LOCKLPM5;
 
     //Configure the port pins as inputs and outputs
-    P1DIR = 0b11111000;      //P1.7-->P1.2 set as outputs
-    P1OUT = 0b11111000;
+    P1DIR = 0b11111100;      //P1.7-->P1.2 set as outputs
+    P1OUT = 0b11111100;
 
     P2DIR = 0b11111110;
     //P2IN = 0b00000000;      //P2.0 set as input
@@ -47,18 +47,18 @@ void main()
         }
         //turn on different lights based on button count.
         if ( ButtonCount == 1 ) {  //turn on "main" yellow LEDs if count == 1
-           P1OUT = P1OUT ^ 0b01000000;
+           P1OUT = P1OUT ^ 0b00000100;
         }
         else if (ButtonCount == 2 ) { //turn off yellow LEDs, turn on red "side" LED if count == 2
             P1OUT = 0b00000000;
-            P1OUT = P1OUT ^ 0b10000000;
+            P1OUT = P1OUT ^ 0b00100000;
         }
         else if ( ButtonCount == 3 ){ //turn off red "side" LED and turn on all green LEDs if count ==3
             P1OUT = 0b00000000;
-            P1OUT = P1OUT ^ 0b00010000;
+            P1OUT = P1OUT ^ 0b00011000;
         }
         else if ( ButtonCount == 4 ){ //flash green LEDs if count == 4
-            P1OUT = P1OUT ^ 0b00010000 ;
+            P1OUT = P1OUT ^ 0b00011000;
            for(i=5000;i>0;i--){};       //Create a delay loop for flash
         }
     }
