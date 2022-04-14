@@ -8,15 +8,15 @@
 //
 // this program functions as the controller for a traffic light with the
 // following operation
-// •    The main lights stay green and the side light is red until a car is
+// â€¢    The main lights stay green and the side light is red until a car is
 //      detected on the side road
-// •    Once a car is detected, the main light goes yellow for 5 seconds and
+// â€¢    Once a car is detected, the main light goes yellow for 5 seconds and
 //      then red for 5 seconds while the side light stays red
-// •    After they are both red for 5 seconds, the side light goes green and
+// â€¢    After they are both red for 5 seconds, the side light goes green and
 //      stays green for 20 seconds
-// •    When 20 seconds has passed, the side light goes yellow for 5 seconds
+// â€¢    When 20 seconds has passed, the side light goes yellow for 5 seconds
 //      and then red for 5 seconds while the main light stays red
-// •    After they are both red for 5 seconds, the main lights go green. The
+// â€¢    After they are both red for 5 seconds, the main lights go green. The
 //      main lights will stay green for 20 seconds even if there is a car on
 //      the side road
 //
@@ -56,8 +56,9 @@ void main()
     //start endless loop
     while(1) {
         isCar = ((P2IN & 0b00000010) == 0); //check to see if car is present
-        prevState = state; //save the current state as prevState
         isNewState = (state != prevState); //checks if is a new state
+        prevState = state; //save the current state as prevState
+        
 
 
        switch(state) {   //switch on the current state
@@ -143,7 +144,7 @@ void main()
 
 
        }  //end switch
-       for(i=48000;i>0;i--);  //this kind of creates 1 second delay
+       for(i=47500;i>0;i--);  //this kind of creates 1 second delay
                               //not very accurate
      } //end while
  } //end main
